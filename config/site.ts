@@ -24,11 +24,11 @@ export const siteConfig: SiteConfig = {
   ],
   url: {
     base: baseUrl,
-    author: "https://redpangilinan.live",
+    author: "#",
   },
   ogImage: `${baseUrl}/og.jpg`,
 }
 
 export const contactConfig: ContactConfig = {
-  email: "janreynald.pangilinan@gmail.com",
+  email: "user@example.com",
 }
