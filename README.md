@@ -8,18 +8,10 @@ Follow the instructions based on the package manager you use (npm/pnpm)
 npm install
 ```
 
-```bash
-pnpm install
-```
-
 ### Run the newly created app
 
 ```bash
 npm run dev
-```
-
-```bash
-pnpm run dev
 ```
 
 ### That's it
