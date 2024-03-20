@@ -1,34 +1,69 @@
-import { SiteConfig, ContactConfig } from "@/types"
+export type SiteConfig = typeof siteConfig;
 
-/* ====================
-[> WEBSITE CONFIG <]
--- Fill the details about your website
- ==================== */
-
-const baseUrl = "https://nextlanding.rdev.pro"
-
-export const siteConfig: SiteConfig = {
-  name: "DevTools",
-  author: "redpangilinan",
-  description:
-    "A collection of tools for developers. JSON Editor, Diff Checker, HTML Editor, and more!",
-  keywords: [
-    "Next.js",
-    "React",
-    "Tailwind CSS",
-    "Radix UI",
-    "shadcn/ui",
-    "Landing Page",
-    "Template",
-    "Starter",
-  ],
-  url: {
-    base: baseUrl,
-    author: "#",
-  },
-  ogImage: `${baseUrl}/og.jpg`,
-}
-
-export const contactConfig: ContactConfig = {
-  email: "user@example.com",
-}
+export const siteConfig = {
+	name: "Next.js + NextUI",
+	description: "Make beautiful websites regardless of your design experience.",
+	navItems: [
+		{
+			label: "Home",
+			href: "/",
+		},
+    {
+      label: "Docs",
+      href: "/docs",
+    },
+    {
+      label: "Pricing",
+      href: "/pricing",
+    },
+    {
+      label: "Blog",
+      href: "/blog",
+    },
+    {
+      label: "About",
+      href: "/about",
+    }
+	],
+	navMenuItems: [
+		{
+			label: "Profile",
+			href: "/profile",
+		},
+		{
+			label: "Dashboard",
+			href: "/dashboard",
+		},
+		{
+			label: "Projects",
+			href: "/projects",
+		},
+		{
+			label: "Team",
+			href: "/team",
+		},
+		{
+			label: "Calendar",
+			href: "/calendar",
+		},
+		{
+			label: "Settings",
+			href: "/settings",
+		},
+		{
+			label: "Help & Feedback",
+			href: "/help-feedback",
+		},
+		{
+			label: "Logout",
+			href: "/logout",
+		},
+	],
+	links: {
+		github: "https://github.com/nextui-org/nextui",
+		twitter: "https://twitter.com/getnextui",
+		docs: "https://nextui-docs-v2.vercel.app",
+		discord: "https://discord.gg/9b6yyZKmH4",
+    sponsor: "https://patreon.com/jrgarciadev"
+	},
+};

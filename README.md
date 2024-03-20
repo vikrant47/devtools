@@ -1,31 +1,24 @@
-## Getting Started
+# Next.js & NextUI Template
 
-Follow the instructions based on the package manager you use (npm/pnpm)
+This is a template for creating applications using Next.js 13 (pages directory) and NextUI (v2).
 
-### Install dependencies
+## Technologies Used
+
+- [Next.js 13](https://nextjs.org/docs/getting-started)
+- [NextUI](https://nextui.org)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Tailwind Variants](https://tailwind-variants.org)
+- [TypeScript](https://www.typescriptlang.org)
+- [Framer Motion](https://www.framer.com/motion)
+- [next-themes](https://github.com/pacocoursey/next-themes)
+
+## How to Use
+
+To create a new project based on this template using `create-next-app`, run the following command:
 
 ```bash
-npm install
+npx create-next-app -e https://github.com/nextui-org/next-pages-template
 ```
+## License
 
-### Run the newly created app
-
-```bash
-npm run dev
-```
-
-### That's it
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-Modify the content and website configurations in the `/config` folder.
-
-Modify the layout and routes in the `/app` folder.
-
-Change navigation links by modifying `lib/links.ts` file.
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Licensed under the [MIT license](https://github.com/nextui-org/next-pages-template/blob/main/LICENSE).
