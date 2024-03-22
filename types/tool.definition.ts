@@ -6,10 +6,32 @@ export interface ToolDefinition {
   image: string;
   href: string;
 }
-export interface Tools {
-  [key: string]: {
-    [key: string]: {
-      [key: string]: ToolDefinition;
-    };
-  };
+export interface ToolCategory {
+  name: string;
+  subCategories: ToolSubCategory[];
 }
+export interface ToolSubCategory {
+  name: string;
+  tools: ToolDefinition[];
+}
+export interface Tools {
+  categories: ToolCategory[];
+}
+
+const x = [
+  {
+    category: {
+      subCategory: {
+        name: '',
+        tools: [
+          {
+            title: 'string',
+            description: 'string',
+            image: 'string',
+            href: 'string'
+          }
+        ]
+      }
+    }
+  }
+];
