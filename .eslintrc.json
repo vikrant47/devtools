@@ -1,3 +1,61 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "overrides": [
+    {
+      "files": ["*.jsx", "*.js", "*.json", "*.html", "*.css", "*.scss", "*.ts", "*.tsx"]
+    }
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["@typescript-eslint", "prettier"],
+  "rules": {
+    "@typescript-eslint/no-var-requires": 0,
+    "no-unused-vars": 0,
+    "react/react-in-jsx-scope": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "singleQuote": true,
+        "trailingComma": "none"
+      }
+    ],
+    "no-prototype-builtins": "off",
+    "no-useless-escape": "off",
+    "quotes": [2, "single"],
+    "linebreak-style": 0,
+    "max-len": ["error", { "code": 180 }],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "guard-for-in": "off",
+    "comma-dangle": "off",
+    "no-debugger": "warn",
+    "require-jsdoc": "off",
+    "valid-jsdoc": "off",
+    "space-before-function-paren": 0,
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/ban-types": "warn"
+  }
 }
