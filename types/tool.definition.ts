@@ -5,6 +5,8 @@ export interface ToolDefinition {
   description: string;
   image: string;
   href: string;
+  featured?: boolean;
+  active: boolean;
 }
 export interface ToolCategory {
   name: string;

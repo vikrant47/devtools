@@ -12,8 +12,10 @@ import { useDebounce } from '@/hooks/useDebounce';
 export const UUIDConfig: ToolDefinition = {
   title: 'UUID Generator',
   description: 'Generate UUIDs with different versions.',
-  image: 'https://via.placeholder.com/150',
-  href: '/tools/dev/generators/uuid-generator'
+  image: '/icons/tools/generators/uuid-generator.png',
+  href: '/tools/dev/generators/uuid-generator',
+  active: true,
+  featured: true
 };
 
 export default function UUIdGenerator() {
@@ -73,7 +75,8 @@ export default function UUIdGenerator() {
         <div className="tools-container">
           <Tabs className="w-full" aria-label="Generate UUID's">
             <Tab title="UUID Generator">
-              <div className="generator-header flex flex-row gap-4 w-full ">
+              <Divider className="my-4" />
+              <div className="generator-header flex flex-row gap-4 w-full pb-2">
                 <RadioGroup
                   className="py-2"
                   defaultValue={selectedVersion}
@@ -107,22 +110,22 @@ export default function UUIdGenerator() {
                 />
               </div>
               <Button
-                className="w-full"
+                className="w-full pb-2"
                 color="primary"
                 onClick={() => {
                   setGenerateCount(() => generateCount + 1);
                 }}>
                 Generate
               </Button>
-              <Divider className="my-4" />
-              <div className="flex flex-col ">
+
+              <div className="flex flex-col pt-2">
                 <Snippet symbol="#" variant="bordered">
                   {uuidStrings}
                 </Snippet>
               </div>
-              <Divider className="my-4" />
             </Tab>
             <Tab title="UUID Parser">
+              <Divider className="my-4" />
               <div className="flex flex-col gap-4">
                 <Input
                   placeholder="Enter UUID to parse"

@@ -6,8 +6,10 @@ import { siteConfig } from '@/config/site';
 import { title, subtitle } from '@/components/primitives';
 import { GithubIcon } from '@/components/icons';
 import DefaultLayout from '@/layouts/default';
-import { FeaturedTools } from '@/components/gallery/tool-gallery';
+import { ToolGallery } from '@/components/gallery/tool-gallery';
 import { getToolsConfigAsArray, ToolsConfig } from '@/config/tools.config';
+import { Divider } from '@nextui-org/divider';
+import { Tab, Tabs } from '@nextui-org/react';
 
 export default function IndexPage() {
   return (
@@ -25,8 +27,7 @@ export default function IndexPage() {
 
         <div className="flex gap-3">
           <Link
-            isExternal
-            href={siteConfig.links.docs}
+            href="/tools"
             className={buttonStyles({
               color: 'primary',
               radius: 'full',
@@ -42,9 +43,41 @@ export default function IndexPage() {
             GitHub
           </Link> */}
         </div>
+        <div className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+          <Tabs className="">
+            {[
+              { title: 'Featured Tools', subtitle: '', filter: { featured: true, active: true } },
+              {
+                title: 'Dev Tools',
+                subtitle: '',
+                filter: { category: 'Development', active: true }
+              },
+              {
+                title: 'Design Tools',
+                subtitle: '',
+                filter: { category: 'Development', active: true }
+              },
+              {
+                title: 'Utility Tools',
+                subtitle: '',
+                filter: { category: 'Development', active: true }
+              }
+            ].map((toolFilter, i) => (
+              <Tab key={i} title={toolFilter.title}>
+                <div key={i} className="py-5">
+                  <div className="">
+                    <div className="space-y-1">
+                      <p className="text-small text-default-400">{toolFilter.subtitle}</p>
+                    </div>
 
-        <div className="mt-8">
-          <FeaturedTools tools={getToolsConfigAsArray()} />
+                    <div className="">
+                      <ToolGallery tools={getToolsConfigAsArray(toolFilter.filter)} />
+                    </div>
+                  </div>
+                </div>
+              </Tab>
+            ))}
+          </Tabs>
         </div>
       </section>
     </DefaultLayout>
