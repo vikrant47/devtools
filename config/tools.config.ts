@@ -1,4 +1,6 @@
+import { Base64Config } from '@/pages/tools/dev/generators/base64-encoder-decoder';
 import { RandomNumberConfig } from '@/pages/tools/dev/generators/random-number-generator';
+import { UrlConfig } from '@/pages/tools/dev/generators/url-encoder-decoder';
 import { UUIDConfig } from '@/pages/tools/dev/generators/uuid-generator';
 import { ToolDefinition, Tools } from '@/types/tool.definition';
 
@@ -9,7 +11,7 @@ export const ToolsConfig: Tools = {
       subCategories: [
         {
           name: 'Generators',
-          tools: [{ ...UUIDConfig, featured: true }, RandomNumberConfig]
+          tools: [{ ...UUIDConfig, featured: true }, RandomNumberConfig, Base64Config, UrlConfig]
         }
       ]
     },

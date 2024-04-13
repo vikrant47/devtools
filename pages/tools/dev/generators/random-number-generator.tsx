@@ -20,7 +20,7 @@ export default function RandomNumberGenerator() {
   return (
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-        <ToolHeader definition={RandomNumberConfig} />
+        <ToolHeader definition={RandomNumberConfig } />
         <div className="tools-container">
           Enter min{' '}
           <Input
