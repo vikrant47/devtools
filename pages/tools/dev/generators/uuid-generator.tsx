@@ -72,7 +72,7 @@ export default function UUIdGenerator() {
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
         <ToolHeader definition={UUIDConfig} />
-        <div className="tools-container">
+        <div className="tools-container w-full">
           <Tabs className="w-full" aria-label="Generate UUID's">
             <Tab title="UUID Generator">
               <Divider className="my-4" />
@@ -108,15 +108,15 @@ export default function UUIdGenerator() {
                     setCount(parseInt(e.target.value));
                   }}
                 />
+                <Button
+                  className="pb-2"
+                  color="primary"
+                  onClick={() => {
+                    setGenerateCount(() => generateCount + 1);
+                  }}>
+                  Generate
+                </Button>
               </div>
-              <Button
-                className="w-full pb-2"
-                color="primary"
-                onClick={() => {
-                  setGenerateCount(() => generateCount + 1);
-                }}>
-                Generate
-              </Button>
 
               <div className="flex flex-col pt-2">
                 <Snippet symbol="#" variant="bordered">
@@ -130,7 +130,9 @@ export default function UUIdGenerator() {
                 <Input
                   placeholder="Enter UUID to parse"
                   value={parsedString}
-                  onChange={(e) => setParsedString(e.target.value)}
+                  onChange={(e) => {
+                    setParsedString(e.target.value);
+                  }}
                 />
                 <Button color="secondary" onClick={handleParse}>
                   Parse
