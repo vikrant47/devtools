@@ -62,7 +62,9 @@ export function InputWithAction(props: InputWithActionProps) {
       </Button>
       <div
         className="flex flex-col items-center justify-center gap-4"
-        style={{ display: showSnippet ? 'block' : 'none' }}>
+        style={{
+          display: showSnippet && snippetValue && snippetValue.length > 0 ? 'block' : 'none'
+        }}>
         <Snippet symbol="#" variant="bordered" onCopy={() => {}}>
           {snippetValue}
         </Snippet>
