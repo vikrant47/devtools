@@ -1,5 +1,8 @@
+import { JSONFormatterConfig } from '@/pages/tools/dev/diff/json-formatter';
 import { RandomNumberConfig } from '@/pages/tools/dev/generators/random-number-generator';
 import { UUIDConfig } from '@/pages/tools/dev/generators/uuid-generator';
+import { URLDecoderConfig } from '@/pages/tools/dev/url/url-decoder';
+import { URLEncoderConfig } from '@/pages/tools/dev/url/url-encoder';
 import { ToolDefinition, Tools } from '@/types/tool.definition';
 
 export const ToolsConfig: Tools = {
@@ -10,6 +13,17 @@ export const ToolsConfig: Tools = {
         {
           name: 'Generators',
           tools: [{ ...UUIDConfig, featured: true }, RandomNumberConfig]
+        },
+        {
+          name: 'Formatters',
+          tools: [{ ...JSONFormatterConfig, featured: true }]
+        },
+        {
+          name: 'Encoder/Decoder',
+          tools: [
+            { ...URLEncoderConfig, featured: true },
+            { ...URLDecoderConfig, featured: true }
+          ]
         }
       ]
     },
