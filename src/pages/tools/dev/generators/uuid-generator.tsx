@@ -1,13 +1,11 @@
-import { CustomRadio } from '@/components/custom-radio';
-import DefaultLayout from '@/layouts/default';
-import { RadioGroup, Radio, Button, Divider, Snippet, Input, Tabs, Tab } from '@nextui-org/react';
-import { title, subtitle } from '@/components/primitives';
-import { use, useEffect, useState } from 'react';
+import { Button, Divider, Input, Radio, Tabs } from 'antd';
+import { useState, useEffect } from 'react';
 import { ToolDefinition } from '@/types/tool.definition';
 import ToolHeader from '@/components/tool-header';
-import { NIL, parse, stringify, v1, v3, v4, v5, validate, version } from 'uuid';
-import { BulkValueGenerator } from '@/components/generators/bluk-generator';
-import { useDebounce } from '@/hooks/useDebounce';
+import DefaultLayout from '@/layouts/default';
+import { NIL, parse, stringify, v1, v3, v4, v5 } from 'uuid';
+import { RadioChangeEvent } from 'antd/lib/radio';
+import { CodeSnippet } from '@/components/system/utils/code.snippet';
 
 export const UUIDConfig: ToolDefinition = {
   title: 'UUID Generator',
@@ -18,14 +16,14 @@ export const UUIDConfig: ToolDefinition = {
   featured: true
 };
 
-export default function UUIdGenerator() {
-  const [selectedVersion, setSelectedVersion] = useState('4');
+const UUIdGenerator = () => {
+  const [selectedVersion, setSelectedVersion] = useState<string>('4');
   const [uuidStrings, setUuidStrings] = useState<string[]>([]);
-  const [parsedUuid, setParsedUuid] = useState('');
-  const [parsedString, setParsedString] = useState('');
-  const [count, setCount] = useState(1);
-  const [generateCount, setGenerateCount] = useState(1);
-  const onChangeDebounce = useDebounce(1000);
+  const [parsedUuid, setParsedUuid] = useState<string>('');
+  const [parsedString, setParsedString] = useState<string>('');
+  const [count, setCount] = useState<number>(1);
+  const [generateCount, setGenerateCount] = useState<number>(1);
+
   const generateUUID = (version: string): string => {
     let uuidValue;
     switch (version) {
@@ -60,6 +58,7 @@ export default function UUIdGenerator() {
     const parsedString = stringify(parsedUuid);
     setParsedString(parsedString);
   };
+
   useEffect(() => {
     const newUuidStrings = [];
     for (let i = 0; i < count; i++) {
@@ -68,103 +67,115 @@ export default function UUIdGenerator() {
     setUuidStrings(newUuidStrings);
   }, [selectedVersion, generateCount]);
 
+  const tabsItems = [
+    {
+      key: 'generator',
+      label: 'UUID Generator',
+      children: (
+        <div>
+          <Divider className="my-4" />
+          <div className="generator-header flex flex-row gap-4 w-full pb-2">
+            <Radio.Group
+              className="py-2"
+              defaultValue={selectedVersion}
+              onChange={(e: RadioChangeEvent) => {
+                const version = e.target.value;
+                setSelectedVersion(version);
+              }}>
+              {['nil', '1', '4'].map((val, i) => (
+                <Radio key={i} value={val}>
+                  {val === 'nil' ? 'Nil' : `Version ${val}`}
+                </Radio>
+              ))}
+            </Radio.Group>
+
+            <Input
+              type="number"
+              min={1}
+              max={1000}
+              className="w-20 p-0"
+              value={count}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  setGenerateCount(generateCount + 1);
+                }
+              }}
+              onChange={(e) => {
+                setCount(parseInt(e.target.value));
+              }}
+            />
+            <Button
+              className="pb-2"
+              type="primary"
+              onClick={() => setGenerateCount(generateCount + 1)}>
+              Generate
+            </Button>
+          </div>
+
+          <div className="flex flex-col pt-2">
+            <CodeSnippet code={parsedString}></CodeSnippet>
+          </div>
+        </div>
+      )
+    },
+    {
+      key: 'parser',
+      label: 'UUID Parser',
+      children: (
+        <div>
+          <Divider className="my-4" />
+          <div className="flex flex-col gap-4">
+            <Input
+              placeholder="Enter UUID to parse"
+              value={parsedString}
+              onChange={(e) => {
+                setParsedString(e.target.value);
+              }}
+            />
+            <Button type="default" onClick={handleParse}>
+              Parse
+            </Button>
+            <div className="flex flex-col items-center justify-center gap-4">
+              <CodeSnippet code={parsedString}></CodeSnippet>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      key: 'stringifier',
+      label: 'UUID Stringifier',
+      children: (
+        <div>
+          <Divider className="my-4" />
+          <div className="flex flex-col gap-4">
+            <Input
+              placeholder="Enter parsed UUID to stringify"
+              value={parsedUuid}
+              onChange={(e) => setParsedUuid(e.target.value)}
+            />
+            <Button type="default" onClick={handleStringify}>
+              Stringify
+            </Button>
+            <div className="flex flex-col items-center justify-center gap-4">
+              <CodeSnippet code={parsedString}></CodeSnippet>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  ];
+
   return (
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
         <ToolHeader definition={UUIDConfig} />
         <div className="tools-container w-full">
-          <Tabs className="w-full" aria-label="Generate UUID's">
-            <Tab title="UUID Generator">
-              <Divider className="my-4" />
-              <div className="generator-header flex flex-row gap-4 w-full pb-2">
-                <RadioGroup
-                  className="py-2"
-                  defaultValue={selectedVersion}
-                  label=""
-                  orientation="horizontal"
-                  onChange={(e) => {
-                    const version = e.target.value;
-                    setSelectedVersion(version);
-                  }}>
-                  {['nil', 1, 4].map((val, i) => (
-                    <Radio key={i} value={val + ''} checked={val == selectedVersion}>
-                      {val === 'nil' ? 'Nil' : `Version ${val}`}
-                    </Radio>
-                  ))}
-                </RadioGroup>
-
-                <Input
-                  type="number"
-                  min={1}
-                  max={1000}
-                  className="w-20 p-0"
-                  value={count + ''}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      setGenerateCount(() => generateCount + 1);
-                    }
-                  }}
-                  onChange={(e) => {
-                    setCount(parseInt(e.target.value));
-                  }}
-                />
-                <Button
-                  className="pb-2"
-                  color="primary"
-                  onClick={() => {
-                    setGenerateCount(() => generateCount + 1);
-                  }}>
-                  Generate
-                </Button>
-              </div>
-
-              <div className="flex flex-col pt-2">
-                <Snippet symbol="#" variant="bordered">
-                  {uuidStrings}
-                </Snippet>
-              </div>
-            </Tab>
-            <Tab title="UUID Parser">
-              <Divider className="my-4" />
-              <div className="flex flex-col gap-4">
-                <Input
-                  placeholder="Enter UUID to parse"
-                  value={parsedString}
-                  onChange={(e) => {
-                    setParsedString(e.target.value);
-                  }}
-                />
-                <Button color="secondary" onClick={handleParse}>
-                  Parse
-                </Button>
-                <div className="flex flex-col items-center justify-center gap-4">
-                  <Snippet symbol="#" variant="bordered">
-                    {parsedUuid}
-                  </Snippet>
-                </div>
-              </div>
-            </Tab>
-            <Tab title="UUID Stringifier">
-              <Divider className="my-4" />
-              <div className="flex flex-col gap-4">
-                <Input
-                  placeholder="Enter parsed UUID to stringify"
-                  value={parsedUuid}
-                  onChange={(e) => setParsedUuid(e.target.value)}
-                />
-                <Button color="secondary" onClick={handleStringify}>
-                  Stringify
-                </Button>
-                <div className="flex flex-col items-center justify-center gap-4">
-                  <Snippet symbol="#" variant="bordered">
-                    {parsedString}
-                  </Snippet>
-                </div>
-              </div>
-            </Tab>
-          </Tabs>
+          <Tabs defaultActiveKey={tabsItems[0].key} type="card" items={tabsItems}></Tabs>
         </div>
       </section>
     </DefaultLayout>
   );
-}
+};
+
+export default UUIdGenerator;

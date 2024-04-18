@@ -1,5 +1,9 @@
-import { Button, Snippet, Textarea } from '@nextui-org/react';
 import React from 'react';
+import { Button, Input, Typography } from 'antd';
+import TextArea from 'antd/lib/input/TextArea';
+import { CodeSnippet } from '@/components/system/utils/code.snippet';
+
+const { Text } = Typography;
 
 export interface InputWithActionProps {
   placeholder: string;
@@ -14,6 +18,7 @@ export interface InputWithActionProps {
   style?: React.CSSProperties;
   className?: string;
 }
+
 const DEFAULT_PROPS: InputWithActionProps = {
   placeholder: 'Enter Input',
   value: '',
@@ -27,6 +32,7 @@ const DEFAULT_PROPS: InputWithActionProps = {
   style: {},
   className: ''
 };
+
 export function InputWithAction(props: InputWithActionProps) {
   const {
     placeholder,
@@ -41,34 +47,31 @@ export function InputWithAction(props: InputWithActionProps) {
     style,
     className
   } = { ...DEFAULT_PROPS, ...props };
+
   return (
     <div className={className} style={style}>
       {inputType === 'textarea' ? (
-        <Textarea
+        <TextArea
           placeholder={placeholder}
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />
       ) : (
-        <input
+        <Input
           type="text"
           placeholder={placeholder}
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />
       )}
-      <Button style={actionStyle} color="primary" onClick={onAction}>
+      <Button style={actionStyle} type="primary" onClick={onAction}>
         {actionText}
       </Button>
-      <div
-        className="flex flex-col items-center justify-center gap-4"
-        style={{
-          display: showSnippet && snippetValue && snippetValue.length > 0 ? 'block' : 'none'
-        }}>
-        <Snippet symbol="#" variant="bordered" onCopy={() => {}}>
-          {snippetValue}
-        </Snippet>
-      </div>
+      {showSnippet && snippetValue && snippetValue.length > 0 && (
+        <div className="flex flex-col items-center justify-center gap-4">
+          <CodeSnippet code={snippetValue}></CodeSnippet>
+        </div>
+      )}
     </div>
   );
 }

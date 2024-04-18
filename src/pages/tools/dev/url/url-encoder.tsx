@@ -1,9 +1,12 @@
-import { Input, Button, Divider, Snippet, Tabs, Tab, Textarea } from '@nextui-org/react';
+import { Input, Button, Divider, Tabs, Textarea } from 'antd';
 import DefaultLayout from '@/layouts/default';
 import ToolHeader from '@/components/tool-header';
 import { useState } from 'react';
 import { ToolDefinition } from '@/types/tool.definition';
-import { InputWithAction } from '@/components/generators/input-with-action';
+import { InputWithAction } from '@/components/devtools/generators/input-with-action';
+
+const { TabPane } = Tabs;
+
 export const URLEncoderConfig: ToolDefinition = {
   title: 'URL Encoder',
   description: 'Encode URLs to make them more friendly for search engines.',
@@ -12,7 +15,8 @@ export const URLEncoderConfig: ToolDefinition = {
   active: true,
   featured: true
 };
-export default function URLEncoder() {
+
+const URLEncoder = () => {
   const [url, setUrl] = useState('');
   const [encodedUrl, setEncodedUrl] = useState('');
 
@@ -30,7 +34,7 @@ export default function URLEncoder() {
             className="flex flex-col gap-4"
             placeholder="Enter URL to encode"
             value={url}
-            onChange={setUrl}
+            onChange={(value) => setUrl(e.target.value)}
             onAction={handleEncode}
             actionText="Encode"
             inputType="textarea"
@@ -41,4 +45,6 @@ export default function URLEncoder() {
       </section>
     </DefaultLayout>
   );
-}
+};
+
+export default URLEncoder;

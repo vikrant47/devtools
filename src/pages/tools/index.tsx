@@ -1,10 +1,13 @@
-import { ToolGallery } from '@/components/gallery/tool-gallery';
-import { subtitle, title } from '@/components/primitives';
+import { Layout, Typography, Tabs } from 'antd';
 import ToolHeader from '@/components/tool-header';
 import { getToolsConfigAsArray, ToolsConfig } from '@/config/tools.config';
 import DefaultLayout from '@/layouts/default';
 import { Tools } from '@/types/tool.definition';
-import { Tab, Tabs } from '@nextui-org/react';
+import { ToolGallery } from '@/components/devtools/gallery/tool-gallery';
+import React from 'react';
+
+const { TabPane } = Tabs;
+const { Title, Text } = Typography;
 
 export default function AllTools() {
   const allTools: Tools = JSON.parse(JSON.stringify(ToolsConfig));
@@ -17,27 +20,28 @@ export default function AllTools() {
       }
     ]
   });
+
   return (
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-2 py-2 md:py-2">
         <div className="inline-block max-w-lg text-center justify-center">
-          <h1 className={title()}>All Tools &nbsp;</h1>
-          <h4 className={subtitle({ class: 'mt-4' })}>
+          <Title level={1}>All Tools &nbsp;</Title>
+          <Text className="mt-4">
             unleash your creativity with our comprehensive collection of digital utilities.
-          </h4>
+          </Text>
         </div>
         <Tabs className="">
           {allTools.categories.map((category, i) => (
-            <Tab key={i} title={category.name}>
+            <TabPane key={i} tab={category.name}>
               <div className="tool-subcat-wrapper">
                 {category.subCategories.map((subCategory, j) => (
                   <div key={j}>
-                    <h3 className={subtitle()}>{subCategory.name}</h3>
+                    <Title level={3}>{subCategory.name}</Title>
                     <ToolGallery tools={subCategory.tools} />
                   </div>
                 ))}
               </div>
-            </Tab>
+            </TabPane>
           ))}
         </Tabs>
       </section>

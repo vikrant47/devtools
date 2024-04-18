@@ -1,27 +1,32 @@
-import { Navbar } from '@/components/navbar';
-import { Link } from '@nextui-org/link';
+import { Button, Layout, Menu, Typography } from 'antd';
+import Link from 'next/link';
 import { Head } from './head';
+import { Navbar } from '@/components/common/navbar';
+
+const { Header, Content, Footer } = Layout;
+const { Text } = Typography;
 
 export default function DefaultLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative flex flex-col h-screen">
+    <Layout className="relative h-screen">
       <Head />
       <Navbar />
-      <main className="container mx-auto px-6 flex-grow grid grid-cols-12 gap-1">
+      <Content className="container mx-auto px-6 flex-grow grid grid-cols-12 gap-1">
         <div className="left-add-area col-span-1"></div>
         <div className="main-area col-span-10">{children}</div>
         <div className="right-add-area col-span-1"></div>
-      </main>
-      <footer className="w-full flex items-center justify-center py-3">
+      </Content>
+      <Footer className="w-full flex items-center justify-center py-3">
         <Link
-          isExternal
-          className="flex items-center gap-1 text-current"
+          passHref
           href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
           title="nextui.org homepage">
-          <span className="text-default-600">Powered by</span>
-          <p className="text-primary">NextUI</p>
+          <Button type="link" className="flex items-center gap-1 text-primary">
+            <span className="text-default-600">Powered by</span>
+            <Text strong>NextUI</Text>
+          </Button>
         </Link>
-      </footer>
-    </div>
+      </Footer>
+    </Layout>
   );
 }

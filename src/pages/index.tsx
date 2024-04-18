@@ -1,17 +1,47 @@
-import { Link } from '@nextui-org/link';
-import { Snippet } from '@nextui-org/snippet';
-import { Code } from '@nextui-org/code';
-import { button as buttonStyles } from '@nextui-org/theme';
+import { Button, Tabs } from 'antd';
+import { HeartFilled } from '@ant-design/icons';
+import Link from 'next/link';
 import { siteConfig } from '@/config/site';
 import { title, subtitle } from '@/components/primitives';
-import { GithubIcon } from '@/components/icons';
 import DefaultLayout from '@/layouts/default';
-import { ToolGallery } from '@/components/gallery/tool-gallery';
+import { ToolGallery } from '@/components/devtools/gallery/tool-gallery';
 import { getToolsConfigAsArray, ToolsConfig } from '@/config/tools.config';
-import { Divider } from '@nextui-org/divider';
-import { Tab, Tabs } from '@nextui-org/react';
 
 export default function IndexPage() {
+  const tabItems = [
+    { title: 'Featured Tools', subtitle: '', filter: { featured: true, active: true } },
+    {
+      title: 'Dev Tools',
+      subtitle: '',
+      filter: { category: 'Development', active: true }
+    },
+    {
+      title: 'Design Tools',
+      subtitle: '',
+      filter: { category: 'Development', active: true }
+    },
+    {
+      title: 'Utility Tools',
+      subtitle: '',
+      filter: { category: 'Development', active: true }
+    }
+  ].map((toolFilter, i) => ({
+    ...toolFilter,
+    children: (
+      <div key={i} className="py-5">
+        <div className="">
+          <div className="space-y-1">
+            <p className="text-small text-default-400">{toolFilter.subtitle}</p>
+          </div>
+
+          <div className="">
+            <ToolGallery tools={getToolsConfigAsArray(toolFilter.filter)} />
+          </div>
+        </div>
+      </div>
+    )
+  }));
+
   return (
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
@@ -26,14 +56,14 @@ export default function IndexPage() {
         </div>
 
         <div className="flex gap-3">
-          <Link
-            href="/tools"
-            className={buttonStyles({
-              color: 'primary',
-              radius: 'full',
-              variant: 'shadow'
-            })}>
-            View All Tools
+          <Link href="/tools">
+            <Button
+              className="text-sm font-normal text-default-600 bg-default-100"
+              shape="round"
+              type="primary"
+              ghost>
+              View All Tools
+            </Button>
           </Link>
           {/* <Link
             isExternal
@@ -44,38 +74,11 @@ export default function IndexPage() {
           </Link> */}
         </div>
         <div className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-          <Tabs className="">
-            {[
-              { title: 'Featured Tools', subtitle: '', filter: { featured: true, active: true } },
-              {
-                title: 'Dev Tools',
-                subtitle: '',
-                filter: { category: 'Development', active: true }
-              },
-              {
-                title: 'Design Tools',
-                subtitle: '',
-                filter: { category: 'Development', active: true }
-              },
-              {
-                title: 'Utility Tools',
-                subtitle: '',
-                filter: { category: 'Development', active: true }
-              }
-            ].map((toolFilter, i) => (
-              <Tab key={i} title={toolFilter.title}>
-                <div key={i} className="py-5">
-                  <div className="">
-                    <div className="space-y-1">
-                      <p className="text-small text-default-400">{toolFilter.subtitle}</p>
-                    </div>
-
-                    <div className="">
-                      <ToolGallery tools={getToolsConfigAsArray(toolFilter.filter)} />
-                    </div>
-                  </div>
-                </div>
-              </Tab>
+          <Tabs className="" defaultActiveKey="0">
+            {tabItems.map((item, index) => (
+              <Tabs.TabPane tab={item.title} key={index}>
+                {item.children}
+              </Tabs.TabPane>
             ))}
           </Tabs>
         </div>
