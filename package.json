@@ -9,27 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/nextjs-registry": "^1.0.0",
     "@monaco-editor/react": "^4.6.0",
     "@nextui-org/react": "^2.2.10",
-    "@types/node": "20.5.7",
-    "@types/react": "18.2.21",
-    "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
     "clsx": "^2.0.0",
-    "eslint": "8.48.0",
-    "eslint-config-next": "13.4.19",
     "framer-motion": "^10.16.4",
     "intl-messageformat": "^10.5.0",
     "lodash": "^4.17.21",
-    "next": "13.4.19",
+    "next": "^14.2.2",
     "next-themes": "^0.2.1",
     "postcss": "8.4.31",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react18-json-view": "^0.2.8",
     "tailwind-variants": "^0.1.18",
     "tailwindcss": "3.3.5",
-    "typescript": "5.0.4",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
@@ -39,9 +34,11 @@
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^8.33.0",
+    "eslint-config-next": "^14.2.2",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
-    "prettier": "^2.8.3"
+    "prettier": "^2.8.3",
+    "typescript": "5.0.4"
   }
 }
