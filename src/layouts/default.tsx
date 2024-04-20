@@ -8,7 +8,7 @@ const { Text } = Typography;
 
 export default function DefaultLayout({ children }: { children: React.ReactNode }) {
   return (
-    <Layout className="relative h-screen">
+    <Layout className="relative">
       <Head />
       <Navbar />
       <Content className="container mx-auto px-6 flex-grow grid grid-cols-12 gap-1">

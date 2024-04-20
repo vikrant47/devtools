@@ -74,13 +74,10 @@ export default function IndexPage() {
           </Link> */}
         </div>
         <div className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-          <Tabs className="" defaultActiveKey="0">
-            {tabItems.map((item, index) => (
-              <Tabs.TabPane tab={item.title} key={index}>
-                {item.children}
-              </Tabs.TabPane>
-            ))}
-          </Tabs>
+          <Tabs
+            className=""
+            defaultActiveKey="0"
+            items={tabItems.map((i) => ({ ...i, label: i.title, key: i.title }))}></Tabs>
         </div>
       </section>
     </DefaultLayout>

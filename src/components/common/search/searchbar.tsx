@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { List, Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import { ThemeService } from '@/services/system/ui/theme.service';
 
 export const ListboxWrapper = ({ children }: { children: React.ReactNode }) => (
   <div className="w-full border px-1 py-2 border-gray-300 dark:border-gray-700">{children}</div>
@@ -25,7 +26,10 @@ export function SearchBar({ searchText, onSearch, results }: SearchBarProps) {
   );
   const [showResults, setShowResults] = useState(false);
   return (
-    <div className="" onFocus={() => setShowResults(true)} onBlur={() => setShowResults(false)}>
+    <div
+      className=""
+      onFocus={() => setShowResults(true)}
+      onBlur={() => setTimeout(() => setShowResults(false), 500)}>
       <Input
         prefix={<SearchOutlined />}
         placeholder="Search Here"
@@ -46,7 +50,7 @@ export function SearchBar({ searchText, onSearch, results }: SearchBarProps) {
             position: 'absolute',
             width: '400px',
             zIndex: 1000,
-            backgroundColor: 'white'
+            backgroundColor: ThemeService.instance().getTheme().token.backgroundColor
           }}>
           <List
             bordered

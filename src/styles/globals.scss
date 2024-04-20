@@ -1,0 +1,20 @@
+:root {
+  /* Your default theme */
+  --background: white;
+  --foreground: black;
+}
+
+[data-theme='dark'] {
+  --background: black;
+  --foreground: white;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**Codeblock style*/
+button.cZmtab,
+button.kncqId {
+  top: 5px;
+  padding: 0;
+}

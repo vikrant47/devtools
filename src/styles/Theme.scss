@@ -1,0 +1,71 @@
+.fullscreen {
+  background-color: white;
+}
+$dark-primary-background-color: #181b34;
+$dark-secondary-background-color: #30324e;
+$dark-primary-color: #00854d;
+.theme-dark {
+  background-color: $dark-primary-background-color;
+  color: #fff;
+  .fullscreen {
+    background-color: $dark-primary-background-color;
+  }
+  .anticon {
+    color: #fff;
+  }
+  .code-editor-ide-warpper .layout-toggle {
+    color: #fff;
+  }
+  .code-editor-ide-warpper .layout-toggle.visible .filled {
+    color: $dark-primary-color;
+  }
+  .fullscreen-wrapper {
+    background-color: $dark-primary-background-color;
+  }
+}
+
+$hacker-theme-primary-background-color: #303241;
+$hacker-theme-secondary-background-color: #30324e;
+$hacker-theme-primary-color: #00854d;
+.theme-hacker-theme {
+  background-color: $hacker-theme-secondary-background-color;
+  color: #fff;
+  .fullscreen {
+    background-color: $dark-primary-background-color;
+  }
+  .anticon {
+    color: #fff;
+  }
+  .code-editor-ide-warpper .layout-toggle {
+    color: #fff;
+  }
+  .code-editor-ide-warpper .layout-toggle.visible .filled {
+    color: $hacker-theme-primary-color;
+  }
+  .fullscreen-wrapper {
+    background-color: $hacker-theme-primary-background-color;
+  }
+}
+
+$black-primary-background-color: #111111;
+$black-secondary-background-color: #30324e;
+$black-primary-color: #00854d;
+.theme-black {
+  background-color: $black-primary-background-color;
+  color: #fff;
+  .fullscreen {
+    background-color: $black-primary-background-color;
+  }
+  .anticon {
+    color: #fff;
+  }
+  .code-editor-ide-warpper .layout-toggle {
+    color: #fff;
+  }
+  .code-editor-ide-warpper .layout-toggle.visible .filled {
+    color: $black-primary-color;
+  }
+  .fullscreen-wrapper {
+    background-color: $black-primary-background-color;
+  }
+}

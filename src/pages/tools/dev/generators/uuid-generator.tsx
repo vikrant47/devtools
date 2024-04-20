@@ -113,7 +113,7 @@ const UUIdGenerator = () => {
           </div>
 
           <div className="flex flex-col pt-2">
-            <CodeSnippet code={parsedString}></CodeSnippet>
+            <CodeSnippet code={uuidStrings.join('\n')}></CodeSnippet>
           </div>
         </div>
       )

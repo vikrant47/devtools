@@ -3,12 +3,33 @@ import type { AppProps } from 'next/app';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { fontSans, fontMono } from '@/config/fonts';
 import { useRouter } from 'next/router';
-import '@/styles/globals.css';
+import '@/styles/globals.scss';
+import '@/styles/Theme.scss';
+import { ConfigProvider } from 'antd';
+import { ThemeEventBus, Themes, ThemeService } from '@/services/system/ui/theme.service';
+import { useEffect, useState } from 'react';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
+const themeService = ThemeService.instance();
 export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter();
-
-  return <Component {...pageProps} />;
+  const [themeName, setThemeName] = useState<Themes>(Themes.DEFAULT);
+  useEffect(() => {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setThemeName(Themes.HACKER);
+    } else {
+      setThemeName(Themes.LIGHT);
+    }
+    ThemeEventBus.on('switch.theme', (event, { oldTheme, newTheme }) => {
+      setThemeName(newTheme);
+      document.body.classList.remove(`theme-${oldTheme}`);
+      document.body.classList.add(`theme-${newTheme}`);
+    });
+  }, []);
+  return (
+    <ConfigProvider theme={themeService.switchTheme(themeName)}>
+      <Component {...pageProps} />;
+    </ConfigProvider>
+  );
 }
 
 export const fonts = {

@@ -8,6 +8,7 @@ import JsonView from 'react18-json-view';
 import 'react18-json-view/src/style.css';
 import { ReflectionUtil } from '@/utils/reflection.util';
 import { TemplateEngine } from '@/utils/template.engine';
+import { ThemeService } from '@/services/system/ui/theme.service';
 
 const { TabPane } = Tabs;
 
@@ -138,6 +139,7 @@ const JSONFormatter = () => {
               <TabPane tab="JavaScript" key="javaScript">
                 <div className="javaScript-editor">
                   <Editor
+                    theme={ThemeService.instance().getMonacoTheme()}
                     onMount={(editor: any, monaco: any) => {
                       // @ts-ignore
                       editorRef.current = editor;

@@ -1,9 +1,10 @@
 import { theme } from 'antd';
 import { BeanManager } from '../system/bean.manager';
 import { EventBus } from '../event/event.bus';
-import { editor } from 'monaco-editor';
+import { dracula, a11yLight } from 'react-code-blocks';
 export const darkTheme = {
   monacoTheme: 'vs-dark',
+  codeBlocTheme: dracula,
   algorithm: [theme.darkAlgorithm],
   components: {
     Button: {
@@ -73,6 +74,7 @@ export const blackTheme = {
 };
 export const defaultTheme = {
   monacoTheme: 'vs',
+  codeBlocTheme: a11yLight,
   algorithm: [theme.defaultAlgorithm],
   components: {
     Drawer: {
@@ -136,10 +138,17 @@ export const ThemeService = BeanManager.register(
       return themeName.replace(/_/g, '-') as Themes;
     }
     switchTheme(themeName: Themes) {
+      const oldTheme = this.themeName;
+      if (oldTheme === themeName) {
+        return this.getTheme();
+      }
       // console.log('switching theme', themeName);
       this.themeName = this.sanitizeThemeName(themeName);
-      ThemeEventBus.emit('switch.theme', themeName);
+      ThemeEventBus.emit('switch.theme', { oldTheme, newTheme: themeName });
       return this.getTheme();
+    }
+    getCodeBlockTheme() {
+      return this.getTheme().codeBlocTheme;
     }
     getMonacoTheme() {
       return this.getTheme().monacoTheme;

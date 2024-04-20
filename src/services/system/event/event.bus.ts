@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import { EventSubscription } from '../../beans/event/event.subscription';
-import { BaseEvent } from '../../beans/event/base.event';
+import { EventSubscription } from '../beans/event/event.subscription';
+import { BaseEvent } from '../beans/event/base.event';
 
 const logger = console;
 
@@ -17,6 +17,7 @@ export class EventBus {
     filter?: (event: BaseEvent, data: any) => boolean,
     order = 1
   ) {
+    //@ts-ignore
     const subId = (callback['_EventSubscriptionId'] = _.uniqueId(
       (this.name || '') + '_subscriber_'
     ));

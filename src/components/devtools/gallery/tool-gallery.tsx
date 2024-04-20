@@ -9,7 +9,7 @@ export function ToolGallery({ tools }: { tools: ToolDefinition[] }) {
       {tools.map((tool, i) => (
         <div key={i} className="rounded-lg">
           <Card
-            className="p-5"
+            className="p-2 m-2"
             style={{ width: 300 }}
             cover={
               <Image
