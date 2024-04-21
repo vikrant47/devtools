@@ -45,6 +45,7 @@ export function SearchBar({ searchText, onSearch, results }: SearchBarProps) {
         <div
           className="relative w-full"
           style={{
+            right: 0,
             maxHeight: '300px',
             overflowY: 'auto',
             position: 'absolute',

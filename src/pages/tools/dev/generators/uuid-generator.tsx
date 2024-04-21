@@ -1,4 +1,4 @@
-import { Button, Divider, Input, Radio, Tabs } from 'antd';
+import { Button, Input, Radio, Tabs } from 'antd';
 import { useState, useEffect } from 'react';
 import { ToolDefinition } from '@/types/tool.definition';
 import ToolHeader from '@/components/tool-header';
@@ -73,7 +73,6 @@ const UUIdGenerator = () => {
       label: 'UUID Generator',
       children: (
         <div>
-          <Divider className="my-4" />
           <div className="generator-header flex flex-row gap-4 w-full pb-2">
             <Radio.Group
               className="py-2"
@@ -105,7 +104,7 @@ const UUIdGenerator = () => {
               }}
             />
             <Button
-              className="pb-2"
+              className={'pb-2'}
               type="primary"
               onClick={() => setGenerateCount(generateCount + 1)}>
               Generate
@@ -123,7 +122,6 @@ const UUIdGenerator = () => {
       label: 'UUID Parser',
       children: (
         <div>
-          <Divider className="my-4" />
           <div className="flex flex-col gap-4">
             <Input
               placeholder="Enter UUID to parse"
@@ -147,7 +145,6 @@ const UUIdGenerator = () => {
       label: 'UUID Stringifier',
       children: (
         <div>
-          <Divider className="my-4" />
           <div className="flex flex-col gap-4">
             <Input
               placeholder="Enter parsed UUID to stringify"
@@ -171,7 +168,7 @@ const UUIdGenerator = () => {
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
         <ToolHeader definition={UUIDConfig} />
         <div className="tools-container w-full">
-          <Tabs defaultActiveKey={tabsItems[0].key} type="card" items={tabsItems}></Tabs>
+          <Tabs defaultActiveKey={tabsItems[0].key} items={tabsItems}></Tabs>
         </div>
       </section>
     </DefaultLayout>

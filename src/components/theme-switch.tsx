@@ -31,7 +31,7 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({ className }) => {
       shape="circle"
       icon={<MoonFilledIcon size={20} className="text-yellow-400 dark:text-gray-400 m-1" />}
       onClick={() => {
-        themeService.switchTheme(Themes.HACKER);
+        themeService.switchTheme(themeService.getDefaultThemeName('dark'));
       }}></Button>
   ) : (
     <Button

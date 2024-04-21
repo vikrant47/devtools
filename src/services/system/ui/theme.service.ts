@@ -2,6 +2,18 @@ import { theme } from 'antd';
 import { BeanManager } from '../system/bean.manager';
 import { EventBus } from '../event/event.bus';
 import { dracula, a11yLight } from 'react-code-blocks';
+export const defaultDarkTheme = {
+  monacoTheme: 'vs-dark',
+  codeBlocTheme: dracula,
+  algorithm: [theme.darkAlgorithm],
+  components: {
+    Button: {
+      borderRadius: 4,
+      algorithm: true,
+      fontWeight: 500
+    }
+  }
+};
 export const darkTheme = {
   monacoTheme: 'vs-dark',
   codeBlocTheme: dracula,
@@ -13,7 +25,8 @@ export const darkTheme = {
       colorLinkActive: '#00854d',
       colorLinkHover: '#025231',
       colorLink: '#00854d',
-      fontWeight: 500
+      fontWeight: 500,
+      colorPrimaryBg: '#00854d'
     },
     Mondal: {
       colorBgContainer: '#181b34',
@@ -34,13 +47,13 @@ export const darkTheme = {
   }
 };
 export const hackerTheme = {
-  ...darkTheme,
+  ...defaultDarkTheme,
   components: {
     Button: {
       borderRadius: 4,
-      colorLinkActive: '#fe78c6',
-      colorLinkHover: '#fe78c6',
-      colorLink: '#fe78c6'
+      colorLinkActive: '#ff1cf7',
+      colorLinkHover: '#ff1cf7',
+      colorLink: '#ff1cf7'
     },
     Drawer: {
       colorBgElevated: '#181b34',
@@ -49,10 +62,10 @@ export const hackerTheme = {
   },
   token: {
     ...darkTheme.token,
-    colorPrimary: '#fe78c6',
-    backgroundColor: '#303241',
+    colorPrimary: '#ff1cf7',
+    backgroundColor: '#000000',
     color: '#d5d8df',
-    colorBgContainer: '#303241'
+    colorBgContainer: '#000000'
   }
 };
 export const blackTheme = {
@@ -90,13 +103,15 @@ export const defaultTheme = {
 };
 export enum Themes {
   DEFAULT = 'default',
+  DEFAULT_DARK = 'default-dark',
   DARK = 'dark',
   LIGHT = 'light',
   HACKER = 'hacker-theme',
   BLACK = 'black'
 }
 export const ThemeMapping: any = {
-  [Themes.DEFAULT]: defaultTheme,
+  [Themes.DEFAULT]: defaultDarkTheme,
+  [Themes.DEFAULT_DARK]: defaultDarkTheme,
   [Themes.DARK]: darkTheme,
   [Themes.LIGHT]: defaultTheme,
   [Themes.HACKER]: hackerTheme,
@@ -127,7 +142,9 @@ export const ThemeService = BeanManager.register(
       });
     }
     protected themeName: Themes = Themes.DEFAULT;
-
+    getDefaultThemeName(mode: 'dark' | 'light'): Themes {
+      return mode === 'dark' ? Themes.HACKER : Themes.DEFAULT;
+    }
     getThemeName(): string {
       return this.themeName;
     }

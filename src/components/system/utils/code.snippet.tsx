@@ -18,7 +18,8 @@ export function CodeSnippet({
   allowCopy = true
 }: CodeSnippetProps) {
   return (
-    <div className="code-snippet" style={{ position: 'relative' }}>
+    <div className="code-snippet w-full" style={{ position: 'relative' }}>
+      <CopyToClipboard text={code} style={{ position: 'absolute', right: 0, top: 0, zIndex: 9 }} />
       <CopyBlock
         onCopy={() => {}}
         text={code || '\n'}

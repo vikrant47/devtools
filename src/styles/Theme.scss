@@ -1,6 +1,10 @@
 .fullscreen {
   background-color: white;
 }
+$light-primary-color: #00854d;
+.ant-btn-primary {
+  background-color: $light-primary-color;
+}
 $dark-primary-background-color: #181b34;
 $dark-secondary-background-color: #30324e;
 $dark-primary-color: #00854d;
@@ -22,11 +26,14 @@ $dark-primary-color: #00854d;
   .fullscreen-wrapper {
     background-color: $dark-primary-background-color;
   }
+  .ant-btn-primary {
+    background-color: $dark-primary-color;
+  }
 }
 
-$hacker-theme-primary-background-color: #303241;
-$hacker-theme-secondary-background-color: #30324e;
-$hacker-theme-primary-color: #00854d;
+$hacker-theme-primary-background-color: #000000;
+$hacker-theme-secondary-background-color: #000000;
+$hacker-theme-primary-color: #ff1cf7;
 .theme-hacker-theme {
   background-color: $hacker-theme-secondary-background-color;
   color: #fff;
@@ -44,6 +51,9 @@ $hacker-theme-primary-color: #00854d;
   }
   .fullscreen-wrapper {
     background-color: $hacker-theme-primary-background-color;
+  }
+  .ant-btn-primary {
+    background-color: $hacker-theme-primary-color;
   }
 }
 
@@ -67,5 +77,8 @@ $black-primary-color: #00854d;
   }
   .fullscreen-wrapper {
     background-color: $black-primary-background-color;
+  }
+  .ant-btn-primary {
+    background-color: $black-primary-color;
   }
 }

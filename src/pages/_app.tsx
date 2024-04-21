@@ -15,9 +15,9 @@ export default function App({ Component, pageProps }: AppProps) {
   const [themeName, setThemeName] = useState<Themes>(Themes.DEFAULT);
   useEffect(() => {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setThemeName(Themes.HACKER);
+      setThemeName(themeService.getDefaultThemeName('dark'));
     } else {
-      setThemeName(Themes.LIGHT);
+      setThemeName(themeService.getDefaultThemeName('light'));
     }
     ThemeEventBus.on('switch.theme', (event, { oldTheme, newTheme }) => {
       setThemeName(newTheme);

@@ -17,14 +17,6 @@ export const URLEncoderConfig: ToolDefinition = {
 };
 
 const URLEncoder = () => {
-  const [url, setUrl] = useState('');
-  const [encodedUrl, setEncodedUrl] = useState('');
-
-  const handleEncode = () => {
-    const encoded = encodeURIComponent(url);
-    setEncodedUrl(encoded);
-  };
-
   return (
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
@@ -33,13 +25,29 @@ const URLEncoder = () => {
           <InputWithAction
             className="flex flex-col gap-4"
             placeholder="Enter URL to encode"
-            value={url}
-            onChange={(value) => setUrl(e.target.value)}
-            onAction={handleEncode}
+            value=""
+            applyOnChange={true}
+            //  onChange={(e) => setUrl(e.target.value)}
+            onAction={(value: string) => {
+              return encodeURIComponent(value).trim();
+            }}
             actionText="Encode"
             inputType="textarea"
             showSnippet={true}
-            snippetValue={encodedUrl}
+            validator={(rule: any, value: string) => {
+              return new Promise((resolve, reject) => {
+                if (value && value.length > 0) {
+                  try {
+                    new URL(value);
+                    resolve(true);
+                  } catch (e) {
+                    reject('Invalid URL!');
+                  }
+                } else {
+                  reject('Invalid URL!');
+                }
+              });
+            }}
           />
         </div>
       </section>

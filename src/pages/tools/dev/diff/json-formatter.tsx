@@ -33,7 +33,7 @@ type Mode = 'text' | 'tree' | 'javaScript';
 const JSONFormatter = () => {
   const [jsonText, setJsonText] = useState<string>('');
   const [javaScript, setJavascript] = useState<string>(JAVASCRIPT_PREFIX + '{};');
-  const monacoInstance = useMonaco();
+  const monaco = useMonaco();
   const editorRef: any = useRef(null);
   const [jsonTree, setJsonTree] = useState<any>({});
   const [error, setError] = useState<string>('');
@@ -41,6 +41,7 @@ const JSONFormatter = () => {
   const [activeMode, setActiveMode] = useState<Mode>('text');
   const treeChanged = useRef<number>(1);
 
+  useEffect(() => {}, []);
   useEffect(() => {
     if (activeMode !== 'text') {
       return;
@@ -89,9 +90,10 @@ const JSONFormatter = () => {
   }, [jsonTree, treeChanged.current]);
 
   useEffect(() => {
-    if (!monacoInstance || !editorRef.current) return;
+    if (!monaco || !editorRef.current) return;
     // Your editor setup code here
-  }, [monacoInstance, editorRef.current]);
+    monaco.editor.setTheme(ThemeService.instance().getMonacoTheme());
+  }, [monaco, editorRef.current]);
 
   return (
     <DefaultLayout>

@@ -2,7 +2,7 @@ import { Button, Tabs } from 'antd';
 import { HeartFilled } from '@ant-design/icons';
 import Link from 'next/link';
 import { siteConfig } from '@/config/site';
-import { title, subtitle } from '@/components/primitives';
+import { title, subtitle, coloredButton } from '@/components/primitives';
 import DefaultLayout from '@/layouts/default';
 import { ToolGallery } from '@/components/devtools/gallery/tool-gallery';
 import { getToolsConfigAsArray, ToolsConfig } from '@/config/tools.config';
@@ -57,11 +57,7 @@ export default function IndexPage() {
 
         <div className="flex gap-3">
           <Link href="/tools">
-            <Button
-              className="text-sm font-normal text-default-600 bg-default-100"
-              shape="round"
-              type="primary"
-              ghost>
+            <Button className={coloredButton({ variant: 'violet' })} shape="round" type="primary">
               View All Tools
             </Button>
           </Link>

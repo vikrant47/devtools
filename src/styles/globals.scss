@@ -1,20 +1,13 @@
-:root {
-  /* Your default theme */
-  --background: white;
-  --foreground: black;
-}
-
-[data-theme='dark'] {
-  --background: black;
-  --foreground: white;
-}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /**Codeblock style*/
 button.cZmtab,
-button.kncqId {
+button.kncqId,
+button.kZQykS,
+button.sc-beySPh {
   top: 5px;
   padding: 0;
+  display: none;
 }

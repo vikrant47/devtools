@@ -17,14 +17,6 @@ export const URLDecoderConfig: ToolDefinition = {
 };
 
 const URLDecoder = () => {
-  const [url, setUrl] = useState('');
-  const [decodedUrl, setDecodedUrl] = useState('');
-
-  const handleDecode = () => {
-    const decoded = decodeURIComponent(url);
-    setDecodedUrl(decoded);
-  };
-
   return (
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
@@ -33,13 +25,30 @@ const URLDecoder = () => {
           <InputWithAction
             className="flex flex-col gap-4"
             placeholder="Enter URL to decode"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            onAction={handleDecode}
+            value=""
+            applyOnChange={true}
+            //  onChange={(e) => setUrl(e.target.value)}
+            onAction={(value: string) => {
+              return decodeURIComponent(value).trim();
+            }}
             actionText="Decode"
             inputType="textarea"
             showSnippet={true}
-            snippetValue={decodedUrl}
+            validator={(rule: any, value: string) => {
+              return new Promise((resolve, reject) => {
+                if (value && value.length > 0) {
+                  try {
+                    const decoded = decodeURIComponent(value);
+                    new URL(decoded);
+                    resolve(true);
+                  } catch (e) {
+                    reject('Invalid URL!');
+                  }
+                } else {
+                  reject('Invalid URL!');
+                }
+              });
+            }}
           />
         </div>
       </section>
