@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Input } from 'antd';
-import TextArea from 'antd/lib/input/TextArea';
+
 import { CodeSnippet } from '@/components/system/utils/code.snippet';
 import { useDebounce } from '@/hooks/useDebounce';
-
+const { TextArea } = Input;
 export interface InputWithActionProps {
   placeholder: string;
   value: string;

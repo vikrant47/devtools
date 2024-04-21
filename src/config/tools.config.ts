@@ -1,3 +1,4 @@
+import { JSONDiffCheckerConfig } from '@/pages/tools/dev/diff/json-diff-checker';
 import { JSONFormatterConfig } from '@/pages/tools/dev/diff/json-formatter';
 import { RandomNumberConfig } from '@/pages/tools/dev/generators/random-number-generator';
 import { UUIDConfig } from '@/pages/tools/dev/generators/uuid-generator';
@@ -16,7 +17,10 @@ export const ToolsConfig: Tools = {
         },
         {
           name: 'Formatters',
-          tools: [{ ...JSONFormatterConfig, featured: true }]
+          tools: [
+            { ...JSONFormatterConfig, featured: true },
+            { ...JSONDiffCheckerConfig, featured: true }
+          ]
         },
         {
           name: 'Encoder/Decoder',

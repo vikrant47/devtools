@@ -11,7 +11,6 @@ import { TemplateEngine } from '@/utils/template.engine';
 import { ThemeService } from '@/services/system/ui/theme.service';
 import { FullScreen } from '@/components/system/fullscreen';
 import { CopyToClipboard } from '@/components/system/utils/copy.to.clipboard';
-import { ToolContext } from '@/contexts/tool-context';
 
 const { TabPane } = Tabs;
 
@@ -33,7 +32,7 @@ export const jsonToJavascript = (json: string) => {
 };
 type Mode = 'text' | 'tree' | 'javaScript';
 
-const JSONFormatter = () => {
+export const JSONViewer = () => {
   const [jsonText, setJsonText] = useState<string>('{}');
   const [javaScript, setJavascript] = useState<string>(JAVASCRIPT_PREFIX + '{};');
   const monaco = useMonaco();
@@ -197,72 +196,63 @@ const JSONFormatter = () => {
   ];
 
   return (
-    <ToolContext.Provider value={JSONFormatterConfig}>
-      <DefaultLayout>
-        <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 p-2">
-          <ToolHeader />
-          <div className="tools-container w-full json-formatter">
-            <FullScreen onExpand={() => {}} onCollapse={() => {}} top="21px">
-              <Card
-                onPaste={(e) => {
-                  const text = e.clipboardData.getData('text');
-                  setJsonText(text);
-                }}
-                extra={
-                  <div className="quick-action">
-                    <CopyToClipboard text={jsonText} />
-                  </div>
-                }
-                styles={{
-                  body: { padding: '0' },
-                  header: { margin: '0' },
-                  extra: { position: 'absolute', right: '38px', top: '0px', zIndex: 9 }
-                }}
-                tabList={tabItems}
-                onTabChange={(key) => {
-                  setViewMode(key as Mode);
-                }}>
-                <div className="tab-content h-100">
-                  <div className="tab-actions p-2">
-                    <Flex gap="small" wrap="wrap">
-                      {actions.map((action) => (
-                        <Tooltip key={action.key} title={action.label}>
-                          <Button
-                            className="border-0 shadow-none"
-                            icon={<i className={action.icon} />}
-                            onClick={action.action}
-                          />
-                        </Tooltip>
-                      ))}
-                    </Flex>
-                  </div>
-                  <div className="tab-content--inner">
-                    {tabItems.find((item) => item.key === viewMode)?.contents}
-                  </div>
-                  <div className="error-message relative">
-                    {error.trim().length > 0 && (
-                      <Alert
-                        className="absolute bottom-0 w-full"
-                        message="Error"
-                        description={error}
-                        type="error"
-                        showIcon
-                        action={
-                          <Button size="small" danger>
-                            Detail
-                          </Button>
-                        }
-                      />
-                    )}
-                  </div>
-                </div>
-              </Card>
-            </FullScreen>
+    <div className="tools-container w-full json-formatter">
+      <FullScreen onExpand={() => {}} onCollapse={() => {}} top="21px">
+        <Card
+          onPaste={(e) => {
+            const text = e.clipboardData.getData('text');
+            setJsonText(text);
+          }}
+          extra={
+            <div className="quick-action">
+              <CopyToClipboard text={jsonText} />
+            </div>
+          }
+          styles={{
+            body: { padding: '0' },
+            header: { margin: '0' },
+            extra: { position: 'absolute', right: '38px', top: '0px', zIndex: 9 }
+          }}
+          tabList={tabItems}
+          onTabChange={(key) => {
+            setViewMode(key as Mode);
+          }}>
+          <div className="tab-content h-100">
+            <div className="tab-actions p-2">
+              <Flex gap="small" wrap="wrap">
+                {actions.map((action) => (
+                  <Tooltip key={action.key} title={action.label}>
+                    <Button
+                      className="border-0 shadow-none"
+                      icon={<i className={action.icon} />}
+                      onClick={action.action}
+                    />
+                  </Tooltip>
+                ))}
+              </Flex>
+            </div>
+            <div className="tab-content--inner">
+              {tabItems.find((item) => item.key === viewMode)?.contents}
+            </div>
+            <div className="error-message relative">
+              {error.trim().length > 0 && (
+                <Alert
+                  className="absolute bottom-0 w-full"
+                  message="Error"
+                  description={error}
+                  type="error"
+                  showIcon
+                  action={
+                    <Button size="small" danger>
+                      Detail
+                    </Button>
+                  }
+                />
+              )}
+            </div>
           </div>
-        </section>
-      </DefaultLayout>
-    </ToolContext.Provider>
+        </Card>
+      </FullScreen>
+    </div>
   );
 };
-
-export default JSONFormatter;

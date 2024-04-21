@@ -7,20 +7,22 @@ import {
   DiscordOutlined
 } from '@ant-design/icons';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { siteConfig } from '@/config/site';
 import clsx from 'clsx';
 
 import { ThemeSwitch } from '@/components/theme-switch';
 import { Logo } from '@/components/icons';
 import { SearchBar } from './search/searchbar';
+import { ToolContext } from '@/contexts/tool-context';
+import { subtitle, title } from '../primitives';
 
 const { SubMenu } = Menu;
 
 export const Navbar = () => {
   const [searchableTools, setSearchableTools] = useState<any>([]);
   const [searchText, setSearchText] = useState<string>('');
-
+  const toolDefinition = useContext(ToolContext);
   useEffect(() => {
     import('@/config/tools.config').then((module) => {
       setSearchableTools(module.getToolsConfigAsArray({ active: true }));
@@ -28,16 +30,17 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <div className="menu">
-      <Menu mode="horizontal" style={{ width: '100%', borderBottom: 'none' }} className="pl-5 pr-5">
-        <Menu.Item style={{ padding: '0' }} key={1}>
-          <div className="flex items-center gap-3 max-w-fit mr-2">
-            <Link href="/" passHref>
-              <Logo />
-            </Link>
-            <p className="font-bold text-inherit">ACME</p>
-          </div>
-        </Menu.Item>
+    <div className="menu flex items-center gap-3 ">
+      <div className="flex items-center gap-3">
+        <Logo />
+        <h1 className={subtitle()} style={{ textWrap: 'nowrap' }}>
+          {toolDefinition?.title || siteConfig.name}
+        </h1>
+      </div>
+      <Menu
+        mode="horizontal"
+        style={{ width: '100%', borderBottom: 'none' }}
+        className="pl-0 ml-0 pr-5">
         {siteConfig.navItems.map((item) => (
           <Menu.Item key={item.href}>
             <Link href={item.href}>{item.label}</Link>

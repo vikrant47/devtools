@@ -5,6 +5,7 @@ import { fontSans, fontMono } from '@/config/fonts';
 import { useRouter } from 'next/router';
 import '@/styles/globals.scss';
 import '@/styles/Theme.scss';
+import '@/styles/components.scss';
 import { ConfigProvider } from 'antd';
 import { ThemeEventBus, Themes, ThemeService } from '@/services/system/ui/theme.service';
 import { useEffect, useState } from 'react';
@@ -27,7 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
   return (
     <ConfigProvider theme={themeService.switchTheme(themeName)}>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </ConfigProvider>
   );
 }

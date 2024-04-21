@@ -2,6 +2,7 @@ import { theme } from 'antd';
 import { BeanManager } from '../system/bean.manager';
 import { EventBus } from '../event/event.bus';
 import { dracula, a11yLight } from 'react-code-blocks';
+import TextArea from 'antd/es/input/TextArea';
 export const defaultDarkTheme = {
   monacoTheme: 'vs-dark',
   codeBlocTheme: dracula,
@@ -11,6 +12,9 @@ export const defaultDarkTheme = {
       borderRadius: 4,
       algorithm: true,
       fontWeight: 500
+    },
+    TextArea: {
+      backgroundColor: '#000000'
     }
   }
 };

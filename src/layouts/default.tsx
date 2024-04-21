@@ -11,13 +11,13 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
     <Layout className="relative">
       <Head />
       <Navbar />
-      <Content className="container mx-auto px-6 flex-grow grid grid-cols-12 gap-1">
+      <Content className="container mx-auto flex-grow grid grid-cols-12 gap-1 pt-4">
         <div className="left-add-area col-span-1"></div>
         <div className="main-area col-span-10">{children}</div>
         <div className="right-add-area col-span-1"></div>
       </Content>
       <Footer className="w-full flex items-center justify-center py-3">
-        <Link
+        {/* <Link
           passHref
           href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
           title="nextui.org homepage">
@@ -25,7 +25,7 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
             <span className="text-default-600">Powered by</span>
             <Text strong>NextUI</Text>
           </Button>
-        </Link>
+        </Link> */}
       </Footer>
     </Layout>
   );

@@ -5,7 +5,7 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'styles')]
   },
   reactStrictMode: true,
-  transpilePackages: ['antd', '@ant-design']
+  transpilePackages: ['antd', '@ant-design', 'allotment']
 };
 
 module.exports = nextConfig;

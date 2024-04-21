@@ -6,6 +6,7 @@ import DefaultLayout from '@/layouts/default';
 import { NIL, parse, stringify, v1, v3, v4, v5 } from 'uuid';
 import { RadioChangeEvent } from 'antd/lib/radio';
 import { CodeSnippet } from '@/components/system/utils/code.snippet';
+import { ToolContext } from '@/contexts/tool-context';
 
 export const UUIDConfig: ToolDefinition = {
   title: 'UUID Generator',
@@ -164,14 +165,16 @@ const UUIdGenerator = () => {
   ];
 
   return (
-    <DefaultLayout>
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-        <ToolHeader definition={UUIDConfig} />
-        <div className="tools-container w-full">
-          <Tabs defaultActiveKey={tabsItems[0].key} items={tabsItems}></Tabs>
-        </div>
-      </section>
-    </DefaultLayout>
+    <ToolContext.Provider value={UUIDConfig}>
+      <DefaultLayout>
+        <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+          <ToolHeader />
+          <div className="tools-container w-full">
+            <Tabs defaultActiveKey={tabsItems[0].key} items={tabsItems}></Tabs>
+          </div>
+        </section>
+      </DefaultLayout>
+    </ToolContext.Provider>
   );
 };
 

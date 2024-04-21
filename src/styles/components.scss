@@ -1,0 +1,27 @@
+.fullscreen-wrapper.full-screen {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999;
+  background: white;
+}
+.fullscreen-wrapper {
+  position: relative;
+}
+.dark .full-screen {
+  background: black;
+}
+
+//monaco-editor
+.rb {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+}
+
+.rb #container {
+  flex-grow: 1;
+}

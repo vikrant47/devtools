@@ -1,4 +1,5 @@
-.fullscreen {
+.fullscreen,
+.diff-action-wrapper {
   background-color: white;
 }
 $light-primary-color: #00854d;
@@ -11,7 +12,9 @@ $dark-primary-color: #00854d;
 .theme-dark {
   background-color: $dark-primary-background-color;
   color: #fff;
-  .fullscreen {
+  .fullscreen,
+  .fullscreen-wrapper,
+  .diff-action-wrapper {
     background-color: $dark-primary-background-color;
   }
   .anticon {
@@ -22,9 +25,6 @@ $dark-primary-color: #00854d;
   }
   .code-editor-ide-warpper .layout-toggle.visible .filled {
     color: $dark-primary-color;
-  }
-  .fullscreen-wrapper {
-    background-color: $dark-primary-background-color;
   }
   .ant-btn-primary {
     background-color: $dark-primary-color;
@@ -49,7 +49,8 @@ $hacker-theme-primary-color: #ff1cf7;
   .code-editor-ide-warpper .layout-toggle.visible .filled {
     color: $hacker-theme-primary-color;
   }
-  .fullscreen-wrapper {
+  .fullscreen-wrapper,
+  .diff-action-wrapper {
     background-color: $hacker-theme-primary-background-color;
   }
   .ant-btn-primary {
@@ -63,7 +64,8 @@ $black-primary-color: #00854d;
 .theme-black {
   background-color: $black-primary-background-color;
   color: #fff;
-  .fullscreen {
+  .fullscreen,
+  .diff-action-wrapper {
     background-color: $black-primary-background-color;
   }
   .anticon {
