@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (min-width: 1536px) {
+  .container {
+    max-width: none;
+  }
+}
+
 /**Codeblock style*/
 button.cZmtab,
 button.kncqId,

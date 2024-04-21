@@ -11,7 +11,7 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
     <Layout className="relative">
       <Head />
       <Navbar />
-      <Content className="container mx-auto flex-grow grid grid-cols-12 gap-1 pt-4">
+      <Content className="container grid grid-cols-12 pt-4">
         <div className="left-add-area col-span-1"></div>
         <div className="main-area col-span-10">{children}</div>
         <div className="right-add-area col-span-1"></div>
