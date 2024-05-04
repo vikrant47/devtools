@@ -9,18 +9,21 @@ export interface CodeSnippetProps {
   language?: string;
   showLineNumbers?: boolean;
   wrapLines?: boolean;
+  fontSize?: number;
 }
 export function CodeSnippet({
   code,
   language = 'bash',
   showLineNumbers,
   wrapLines = true,
-  allowCopy = true
+  allowCopy = true,
+  fontSize = 14
 }: CodeSnippetProps) {
   return (
     <div className="code-snippet w-full" style={{ position: 'relative' }}>
       <CopyToClipboard text={code} style={{ position: 'absolute', right: 0, top: 0, zIndex: 9 }} />
       <CopyBlock
+        customStyle={{ fontSize: fontSize + 'px' }}
         onCopy={() => {}}
         text={code || '\n'}
         theme={ThemeService.instance().getCodeBlockTheme()}

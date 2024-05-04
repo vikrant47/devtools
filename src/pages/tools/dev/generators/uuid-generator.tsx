@@ -112,8 +112,8 @@ const UUIdGenerator = () => {
             </Button>
           </div>
 
-          <div className="flex flex-col pt-2">
-            <CodeSnippet code={uuidStrings.join('\n')}></CodeSnippet>
+          <div className="flex flex-col pt-2 w-1/3">
+            <CodeSnippet fontSize={20} code={uuidStrings.join('\n')}></CodeSnippet>
           </div>
         </div>
       )
@@ -134,7 +134,7 @@ const UUIdGenerator = () => {
             <Button type="default" onClick={handleParse}>
               Parse
             </Button>
-            <div className="flex flex-col items-center justify-center gap-4">
+            <div className="flex flex-col items-center justify-center gap-4 w-1/2">
               <CodeSnippet code={parsedString}></CodeSnippet>
             </div>
           </div>

@@ -30,9 +30,9 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <div className="menu flex items-center gap-3 ">
+    <div className="menu flex items-center gap-3 pl-16 pr-12 pt-2 pb-2 border-bottom-1">
       <div className="flex items-center gap-3">
-        <Logo />
+        <Logo size={50} />
         <h1 className={subtitle()} style={{ textWrap: 'nowrap' }}>
           {toolDefinition?.title || siteConfig.name}
         </h1>
