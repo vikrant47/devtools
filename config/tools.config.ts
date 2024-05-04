@@ -1,3 +1,4 @@
+import { WordErrorRateConfig } from '@/pages/tools/dev/compare/word-error-rate';
 import { RandomNumberConfig } from '@/pages/tools/dev/generators/random-number-generator';
 import { UUIDConfig } from '@/pages/tools/dev/generators/uuid-generator';
 import { ToolDefinition, Tools } from '@/types/tool.definition';
@@ -10,6 +11,10 @@ export const ToolsConfig: Tools = {
         {
           name: 'Generators',
           tools: [{ ...UUIDConfig, featured: true }, RandomNumberConfig]
+        },
+        {
+          name: 'Compare',
+          tools: [WordErrorRateConfig]
         }
       ]
     },
