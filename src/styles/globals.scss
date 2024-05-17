@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: none;
+  }
+}
+
+/**Codeblock style*/
+button.cZmtab,
+button.kncqId,
+button.kZQykS,
+button.sc-beySPh {
+  top: 5px;
+  padding: 0;
+  display: none;
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #565858;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #858a8b;
+}
