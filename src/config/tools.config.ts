@@ -1,5 +1,9 @@
+import { ASCIIConverterConfig } from '@/pages/tools/dev/converter/ascii-converter';
+import { StringCaseConverterConfig } from '@/pages/tools/dev/converter/string-case-converter';
 import { JSONDiffCheckerConfig } from '@/pages/tools/dev/diff/json-diff-checker';
 import { JSONFormatterConfig } from '@/pages/tools/dev/diff/json-formatter';
+import { WERCalculatorConfig } from '@/pages/tools/dev/diff/word-error-rate-checker';
+import { Base64Config } from '@/pages/tools/dev/generators/base64-encoder-decoder';
 import { RandomNumberConfig } from '@/pages/tools/dev/generators/random-number-generator';
 import { UUIDConfig } from '@/pages/tools/dev/generators/uuid-generator';
 import { URLDecoderConfig } from '@/pages/tools/dev/url/url-decoder';
@@ -13,13 +17,18 @@ export const ToolsConfig: Tools = {
       subCategories: [
         {
           name: 'Generators',
-          tools: [{ ...UUIDConfig, featured: true }, RandomNumberConfig]
+          tools: [{ ...UUIDConfig, featured: true }, RandomNumberConfig, Base64Config]
+        },
+        {
+          name: 'Converter',
+          tools: [StringCaseConverterConfig,ASCIIConverterConfig]
         },
         {
           name: 'Formatters',
           tools: [
             { ...JSONFormatterConfig, featured: true },
-            { ...JSONDiffCheckerConfig, featured: true }
+            { ...JSONDiffCheckerConfig, featured: true },
+            WERCalculatorConfig
           ]
         },
         {
