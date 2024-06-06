@@ -1,5 +1,6 @@
 // provide base64 encoder and decoder
 
+import { InputWithAction } from "@/components/devtools/generators/input-with-action";
 import ToolHeader from "@/components/tool-header";
 import { ToolContext } from "@/contexts/tool-context";
 import DefaultLayout from "@/layouts/default";
@@ -20,20 +21,20 @@ export const Base64Config: ToolDefinition = {
 
 
 
-const Base64EncoderDecoder =() => {
+const Base64EncoderDecoder = () => {
 
     const encodeText = () => {
         const encoded = btoa(inputText);
         setOutput(encoded);
         setEncodedText(encoded);
-      };
-    
-      
-      const decodeText = () => {
+    };
+
+
+    const decodeText = () => {
         const decoded = atob(inputText);
         setOutput(decoded);
         setDecodedText(decoded);
-      };
+    };
 
     const [inputText, setInputText] = useState<string>('');
     const [output, setOutput] = useState<string>('');
@@ -42,28 +43,50 @@ const Base64EncoderDecoder =() => {
 
     return (
         <ToolContext.Provider value={Base64Config}>
-        <DefaultLayout>
-            <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-                <ToolHeader/>
-                <div className= "gap-2">
-                    <TextArea
+            <DefaultLayout>
+                <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+                    <ToolHeader />
+                    <div className="tools-container w-9/12 h-5/6">
+                        {/* <TextArea
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
                         placeholder="Enter text to encode/decode"
                         rows={5}
                         cols={50}
                     />
-                    <br></br>
-                    {/* <ButtonGroup isDisabled>
-                        <Button onClick={()=> encodeText()}>Encode to Base64</Button>
-                        <Button onClick={()=> decodeText()}>Decode from Base64Three</Button>
-                    </ButtonGroup> */}
-                    <Flex className= "gap-4" justify='space-between'>
-                    <Button onClick={encodeText}>Encode to Base64</Button>
-                    <Button onClick={decodeText}>Decode from Base64</Button>
-                    </Flex>
-                    <TextArea rows={5} cols={50} value={output}/>
-            </div>
+                    <br></br> */}
+                        <Flex className="gap-5" justify='space-between' align="center">
+                            <InputWithAction
+                                className="flex flex-col gap-4 w-full h-full"
+                                placeholder="Enter URL to decode"
+                                value=""
+                                applyOnChange={true}
+                                //  onChange={(e) => setUrl(e.target.value)}
+                                onAction={(value: string) => {
+                                    return btoa(value).trim();
+                                }}
+                                actionText="Decode"
+                                inputType="textarea"
+                                showSnippet={true}
+                            />
+                            <InputWithAction
+                                className="flex flex-col gap-4 w-full h-full"
+                                placeholder="Enter URL to encode"
+                                value=""
+                                applyOnChange={true}
+                                //  onChange={(e) => setUrl(e.target.value)}
+                                onAction={(value: string) => {
+                                    return atob(value).trim();
+                                }}
+                                actionText="Encode"
+                                inputType="textarea"
+                                showSnippet={true}
+                            />
+                            {/* <Button onClick={encodeText}>Encode to Base64</Button>
+                    <Button onClick={decodeText}>Decode from Base64</Button> */}
+                        </Flex>
+                        {/* <TextArea rows={5} cols={50} value={output}/> */}
+                    </div >
 
                     {/* <div>
                         <strong>Encoded:</strong> {encodedText}
@@ -72,8 +95,8 @@ const Base64EncoderDecoder =() => {
                         <strong>Decoded:</strong> {decodedText}
                     </div> */}
 
-        </section>            
-        </DefaultLayout >
+                </section>
+            </DefaultLayout >
         </ToolContext.Provider>
     );
 }

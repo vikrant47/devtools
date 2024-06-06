@@ -1,8 +1,9 @@
+import { InputWithAction } from '@/components/devtools/generators/input-with-action';
 import ToolHeader from '@/components/tool-header';
 import { ToolContext } from '@/contexts/tool-context';
 import DefaultLayout from '@/layouts/default';
 import { ToolDefinition } from '@/types/tool.definition';
-import {Input, Select} from 'antd';
+import { Flex, Input, Select } from 'antd';
 const { TextArea } = Input;
 import { useState, ChangeEvent } from 'react';
 
@@ -13,8 +14,8 @@ export const ASCIIConverterConfig: ToolDefinition = {
     href: '/tools/dev/converter/ascii-converter',
     active: true,
     featured: true
-  };
-  
+};
+
 const asciiToText = (ascii: string): string => {
     return ascii
         .split(' ')
@@ -42,7 +43,7 @@ const Home: React.FC = () => {
         handleConvert(e.target.value as 'asciiToText' | 'textToAscii')
     };
 
-    const handleConvert = (value:string) => {
+    const handleConvert = (value: string) => {
         setConversionType(value as 'asciiToText' | 'textToAscii');
         if (value === 'asciiToText') {
             setOutput(asciiToText(input));
@@ -53,31 +54,50 @@ const Home: React.FC = () => {
 
     return (
         <ToolContext.Provider value={ASCIIConverterConfig}>
-      <DefaultLayout>
-        <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-          <ToolHeader />
-        <div>
-            <div style={{ marginBottom: '1rem' }}>
-                {/* <label htmlFor="inputText">Input:</label> */}
+            <DefaultLayout>
+                <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+                    <ToolHeader />
+                    <div className="tools-container w-9/12 h-5/6">
+                        <Flex className="gap-5" justify='space-between' align="center">
+                            <InputWithAction
+                                className="flex flex-col gap-4 w-full h-full"
+                                placeholder="Convert Text to ASCII"
+                                value=""
+                                applyOnChange={true}
+                                //  onChange={(e) => setUrl(e.target.value)}
+                                onAction={(value: string) => {
+                                    return value
+                                        .split('')
+                                        .map(char => char.charCodeAt(0).toString())
+                                        .join(' ');
+                                }}
+                                actionText="Text to ASCII"
+                                inputType="textarea"
+                                showSnippet={true}
+                            />
+                            <InputWithAction
+                                className="flex flex-col gap-4 w-full h-full"
+                                placeholder="Convert ASCII to Text"
+                                value=""
+                                applyOnChange={true}
+                                //  onChange={(e) => setUrl(e.target.value)}
+                                onAction={(value: string) => {
+                                    return value
+                                        .split(' ')
+                                        .map(char => String.fromCharCode(parseInt(char, 10)))
+                                        .join('');;
+                                }}
+                                actionText="ASCII to Text"
+                                inputType="textarea"
+                                showSnippet={true}
+                            />
+                        </Flex>
+
+
+                        {/* <div style={{ marginBottom: '1rem' }}>
                 <TextArea rows={5} cols={50} value={input} onChange={handleInputChange} />
-                {/* <textarea
-                    id="inputText"
-                    value={input}
-                    onChange={handleInputChange}
-                    rows={5}
-                    style={{ width: '100%' }}
-                /> */}
             </div>
                         <div style={{ marginBottom: '1rem' }}>
-                            {/* <select
-                                id="conversionType"
-                                value={conversionType}
-                                onChange={handleConversionTypeChange}
-                                style={{ width: '100%', padding: '0.5rem', fontSize: '1rem' }}
-                            >
-                                <option value="asciiToText">ASCII to Text</option>
-                                <option value="textToAscii">Text to ASCII</option>
-                            </select> */}
                             <Select
                                 defaultValue='asciiToText'
                                 style={{ width: 400 }}
@@ -85,32 +105,18 @@ const Home: React.FC = () => {
                                 options={[
                                     { value: 'asciiToText', label: "ASCII to Text" },
                                     { value: 'textToAscii', label: "Text to ASCII" },
-                                    // { value: 'disabled', label: 'Disabled', disabled: true },
                                 ]}
                             />
                         </div>
-            {/* <div style={{ marginBottom: '1rem' }}>
-                <button
-                    onClick={handleConvert}
-                    style={{ width: '100%', padding: '1rem', fontSize: '1rem', cursor: 'pointer' }}
-                >
-                    Convert
-                </button>
-            </div> */}
             <div style={{ marginBottom: '1rem' }}>
             <TextArea rows={5} cols={50} value={output}/>
-                {/* <textarea
-                    id="outputText"
-                    value={output}
-                    readOnly
-                    rows={5}
-                    style={{ width: '100%' }}
-                /> */}
-            </div>
-        </div>
-        </section>
-    </DefaultLayout>
-    </ToolContext.Provider>
+            </div> */}
+
+
+                    </div>
+                </section>
+            </DefaultLayout>
+        </ToolContext.Provider>
     );
 }
 

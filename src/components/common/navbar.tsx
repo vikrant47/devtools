@@ -50,20 +50,9 @@ export const Navbar = () => {
 
       <div
         className="hidden sm:flex basis-1/5 sm:basis-full justify-end align-middle gap-2"
-        style={{ position: 'absolute', right: '20px', top: '10px' }}>
-        <div className="hidden sm:flex gap-2">
-          <Link href={siteConfig.links.twitter} passHref>
-            <Button type="link" icon={<TwitterOutlined className="text-default-500" />} />
-          </Link>
-          <Link href={siteConfig.links.discord} passHref>
-            <Button type="link" icon={<DiscordOutlined className="text-default-500" />} />
-          </Link>
-          <Link href={siteConfig.links.github} passHref>
-            <Button type="link" icon={<GithubOutlined className="text-default-500" />} />
-          </Link>
-          <ThemeSwitch />
-        </div>
-        <div className="hidden lg:flex">
+        style={{ position: 'absolute', right: '20px', top: '10px'}}>
+        <div 
+        className="hidden lg:flex">
           <SearchBar
             searchText={searchText}
             results={searchableTools}
@@ -72,7 +61,19 @@ export const Navbar = () => {
             }}
           />
         </div>
-        <div className="hidden md:flex">
+        <div className="hidden sm:flex gap-2">
+          {/* <Link href={siteConfig.links.twitter} passHref>
+            <Button type="link" icon={<TwitterOutlined className="text-default-500" />} />
+          </Link>
+          <Link href={siteConfig.links.discord} passHref>
+            <Button type="link" icon={<DiscordOutlined className="text-default-500" />} />
+          </Link>
+          <Link href={siteConfig.links.github} passHref>
+            <Button type="link" icon={<GithubOutlined className="text-default-500" />} />
+          </Link> */}
+          <ThemeSwitch />
+        </div>
+        {/* <div className="hidden md:flex">
           <Button
             href={siteConfig.links.sponsor}
             type="text"
@@ -80,15 +81,15 @@ export const Navbar = () => {
             className="text-sm font-normal text-default-600 bg-default-100">
             Sponsor
           </Button>
-        </div>
+        </div> */}
       </div>
-      <div className="sm:hidden pl-4 justify-end">
+      {/* <div className="sm:hidden pl-4 justify-end">
         <Link href={siteConfig.links.github} passHref>
           <GithubOutlined className="text-default-500" />
         </Link>
         <ThemeSwitch />
         <SearchOutlined />
-      </div>
+      </div> */}
       {/* <Menu.Item style={{ padding: '0' }}>
     <Menu mode="inline" inlineCollapsed={true}>
       {siteConfig.navMenuItems.map((item, index) => (

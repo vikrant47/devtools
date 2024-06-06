@@ -95,7 +95,7 @@ const WERCalculator: React.FC = () => {
                 rows={10}
                 cols={10}
                 value={originalText}
-                 onChange={(e) => setOriginalText(e.target.value)} />
+                onChange={(e) => setOriginalText(e.target.value)} />
               </div>
               <div>
                 {/* <label>Upload Original Text File:</label> */}
@@ -118,12 +118,13 @@ const WERCalculator: React.FC = () => {
             </div>
           </Flex>
           <br></br>
-            <Button onClick={calculateWER}>Calculate WER</Button> <TextArea> {wer}</TextArea>
-            {/* {wer !== null && (
+            <Button onClick={calculateWER}>Calculate WER</Button>/
+             {/* <TextArea value ={toString(wer)}/> */}
+            {wer !== null && (
               <div>
                 <p>Word Error Rate: {wer}</p>
               </div>
-            )} */}
+            )}
           </div>
         </section>
       </DefaultLayout>
